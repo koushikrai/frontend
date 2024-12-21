@@ -1,0 +1,14 @@
+frontend/
+├── public/
+├── src/
+    ├── components/
+        ├── EmergencyForm.jsx
+        ├── MapView.jsx
+    ├── pages/
+        ├── index.js
+        ├── emergency.js
+    ├── styles/
+        ├── globals.css
+    ├── utils/
+        ├── api.js
+├── package.json
