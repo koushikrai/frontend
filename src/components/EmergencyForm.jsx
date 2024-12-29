@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import axios from 'axios';
 import MapView from './MapView'; // Ensure proper casing for the component name
+import api from "../utils/api"; // Import the Axios instance
+
 
 export default function EmergencyForm({ onResponse }) {
   const [formData, setFormData] = useState({ address: '', details: '' });
@@ -12,14 +14,24 @@ export default function EmergencyForm({ onResponse }) {
     e.preventDefault();
     setLoading(true); // Start loading
     setError(null); // Reset error
-
+  
     try {
-      const res = await axios.post('http://localhost:3001/api/emergency', formData);
-      setResponse(res.data);
-      if (onResponse) onResponse(res.data); // Trigger the callback with the response
-    } catch (err) {
-      console.error('Error submitting emergency:', err);
-      setError('Failed to submit emergency. Please try again.');
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/controllers/emergencyController`, {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+              address: formAddress,
+              details: formDetails,
+          }),
+      });
+
+      const data = await res.json();
+      setResponseMessage(data.message || "Submission successful!");
+  }catch (err) {
+      console.error("Error submitting emergency:", err);
+      setError("Failed to submit emergency. Please try again.");
     } finally {
       setLoading(false); // Stop loading
     }

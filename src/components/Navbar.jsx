@@ -9,11 +9,8 @@ export default function Navbar() {
           <Link href="/" className="hover:underline">
             Home
           </Link>
-          <Link href="/emergency" className="hover:underline">
+          <Link href="/Realemergency" className="hover:underline">
             Emergency
-          </Link>
-          <Link href="/signup" className="hover:underline">
-            Signup
           </Link>
         </div>
       </div>
