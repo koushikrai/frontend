@@ -1,5 +1,12 @@
-import "@/styles/globals.css";
+// pages/_app.js
+import '../styles/globals.css';
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+function MyApp({ Component, pageProps }) {
+  return (
+    <div>
+      <Component {...pageProps} /> {/* This renders the correct page based on the route */}
+    </div>
+  );
 }
+
+export default MyApp;
